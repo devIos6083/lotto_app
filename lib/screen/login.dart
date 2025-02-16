@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import 'package:login/lotter_app/layout_lotto.dart';
 import 'package:login/widget/my_textfield.dart';
 import 'package:login/widget/my_container.dart';
 import 'package:login/lotter_app/lotto.dart';
@@ -102,8 +103,10 @@ class _LoginState extends State<Login> {
                     onTap: () {
                       if (emailController.text == "email@email.com" &&
                           passwordController.text == '123456') {
-                        Navigator.push(context,
-                            MaterialPageRoute(builder: (context) => Lotto()));
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => LayoutLotto()));
                       } else if (emailController.text == "email@email.com" &&
                           passwordController.text != '123456') {
                         ScaffoldMessenger.of(context).showSnackBar(

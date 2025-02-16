@@ -16,7 +16,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         colorSchemeSeed: Colors.blue,
       ),
-      home: Lotto(),
+      home: Login(),
     );
   }
 }

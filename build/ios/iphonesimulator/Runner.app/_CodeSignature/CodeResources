@@ -46,7 +46,7 @@
 		</data>
 		<key>Frameworks/App.framework/App</key>
 		<data>
-		3jyyS4NPaTit7ppY/olPfEHOkPY=
+		8Orf8DsURp5UBsSmz+AUfuf2DBw=
 		</data>
 		<key>Frameworks/App.framework/Info.plist</key>
 		<data>
@@ -54,7 +54,7 @@
 		</data>
 		<key>Frameworks/App.framework/_CodeSignature/CodeResources</key>
 		<data>
-		SNmbAbXLEwYXwSNt0MESXTs1nZY=
+		XmK5FVL3HRG0CrJMGFoYpv881ZI=
 		</data>
 		<key>Frameworks/App.framework/flutter_assets/AssetManifest.bin</key>
 		<data>
@@ -102,7 +102,7 @@
 		</data>
 		<key>Frameworks/App.framework/flutter_assets/kernel_blob.bin</key>
 		<data>
-		BhN0hUb3dMOLDxItRVttU8TKgqo=
+		Q7T3zSuSaWV0iBx240wJnk8x4fE=
 		</data>
 		<key>Frameworks/App.framework/flutter_assets/lottie/cat.json</key>
 		<data>
@@ -513,7 +513,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			RTwbssa5cXMoJlVzD8IxWnzUer7/7M9tpP3iPMDyyZw=
+			dW3yxKnuGQ/kZ3T9fiWwUJJu0O3S8JWVlaASBq8SHGM=
 			</data>
 		</dict>
 		<key>Frameworks/App.framework/Info.plist</key>
@@ -527,7 +527,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			YumGkUqQFiATAd1kX3nFModuWjpFleMjBv6WCdL04ys=
+			Bhyhqj2paZ9Ul2gd0ojAI7ZQZDaxU1cl2WbxQibHoR0=
 			</data>
 		</dict>
 		<key>Frameworks/App.framework/flutter_assets/AssetManifest.bin</key>
@@ -611,7 +611,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			YurNEBgN3+kRK3UrHPrHpHG8Vd6JvCYekmdyzVB6598=
+			fkMSeabykwu/TuUzrFvwdjTUgmETRwDZni2vPn3KuDA=
 			</data>
 		</dict>
 		<key>Frameworks/App.framework/flutter_assets/lottie/cat.json</key>

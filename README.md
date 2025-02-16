@@ -7,10 +7,10 @@
 | **기여도**       | **100% (1인 개발)** |
 | **프로젝트 목적** | Flutter를 활용한 로그인 및 로또 앱 개발 |
 | **구현 기간**    | **2024.02.10 ~ 진행 중** |
-| **기술 스택**    | Flutter / Dart / flutter_animate / lottie / fluttertoast |
-| **핵심 기능**    | - 로그인 페이지 구현 <br> - 로그인 성공 시 로또 페이지 이동 <br> - 반응형 UI 적용 <br> - 애니메이션 효과 적용 |
-| **Pain Point**   | - Firebase 없이 로그인 기능 구현 <br> - 정적인 UI가 아닌 동적인 애니메이션 적용 <br> - 다양한 화면 크기에 대응하는 반응형 UI |
-| **해결 방법**    | - `TextEditingController`를 활용하여 입력된 값 검증 <br> - `ScaffoldMessenger`로 오류 메시지 출력 <br> - `MediaQuery`를 사용해 화면 크기 감지 및 UI 조정 <br> - `flutter_animate` 패키지를 활용하여 UI 요소별 애니메이션 추가 |
+| **기술 스택**    | Flutter / Dart / flutter_animate / lottie / fluttertoast / flutter_svg |
+| **핵심 기능**    | - 로그인 페이지 구현 <br> - 로그인 성공 시 로또 페이지 이동 <br> - 반응형 UI 적용 <br> - 애니메이션 효과 적용 <br> - 로또 번호 생성 기능 <br> - 팝업 다이얼로그 표시 |
+| **Pain Point**   | - Firebase 없이 로그인 기능 구현 <br> - 정적인 UI가 아닌 동적인 애니메이션 적용 <br> - 다양한 화면 크기에 대응하는 반응형 UI <br> - ListView.builder 사용 시 UI 오류 해결 |
+| **해결 방법**    | - TextEditingController를 활용하여 입력된 값 검증 <br> - ScaffoldMessenger로 오류 메시지 출력 <br> - MediaQuery를 사용해 화면 크기 감지 및 UI 조정 <br> - flutter_animate 패키지를 활용하여 UI 요소별 애니메이션 추가 <br> - flutter_svg를 활용한 로또 공 아이콘 적용 |
 
 ---
 
@@ -21,15 +21,17 @@
 | **2024.02.10** | 프로젝트 초기 설정 및 로그인 UI 구현 |
 | **2024.02.11** | 반응형 UI 적용 및 애니메이션 효과 추가 |
 | **2024.02.12** | 로그인 화면과 로또 번호 생성 기능 연결, 기본 기능 정상 동작 확인 |
-| **2024.02.14** | `Expanded`와 `Flex`를 활용한 유연한 UI 구성 <br> `RawScrollbar`을 이용한 스크롤바 추가 <br> `Fluttertoast`를 활용한 토스트 메시지 구현 <br> 커스텀 폰트 적용 |
+| **2024.02.14** | Expanded와 Flex를 활용한 유연한 UI 구성 <br> RawScrollbar을 이용한 스크롤바 추가 <br> Fluttertoast를 활용한 토스트 메시지 구현 <br> 커스텀 폰트 적용 |
+| **2024.02.16** | 로또 번호를 SVG 아이콘으로 표시 <br> 팝업 다이얼로그 추가 <br> 반응형 UI 개선 및 레이아웃 수정 |
 
 ---
+
 ## 🖥 구현 결과  
 
 ### 📌 앱 주요 화면  
-|  |    |   |  
-|:----------------------------:|:----------------------------:| :----------------------------:|   
-| ![로그인 동작 화면](https://github.com/user-attachments/assets/b76f42eb-db07-4f75-a8d9-22e2c5e3d899) |  ![로또번호 생성 화면](https://github.com/user-attachments/assets/8fc04f98-895c-4922-b5ab-2e3dd0e87edb) | ![토스트 메시지 및 Scroll 화면](https://github.com/user-attachments/assets/3905e23d-5a74-44d6-a01b-f441fa11a3ec) |
+|  |    |   |  |  
+|:----------------------------:|:----------------------------:| :----------------------------:|   :----------------------------:|   
+| ![로그인 동작 화면](https://github.com/user-attachments/assets/b76f42eb-db07-4f75-a8d9-22e2c5e3d899) |  ![로또번호 생성 화면](https://github.com/user-attachments/assets/8fc04f98-895c-4922-b5ab-2e3dd0e87edb) | ![토스트 메시지 및 Scroll 화면](https://github.com/user-attachments/assets/3905e23d-5a74-44d6-a01b-f441fa11a3ec) | ![완성된 화면](https://github.com/user-attachments/assets/9751177f-f2ca-410c-ba41-c56731b19e24) |
 
 ---
 
@@ -37,43 +39,46 @@
 
 ### 1️⃣ **Firebase 없이 로그인 기능 구현**  
 Firebase를 사용하지 않고도 로그인 기능을 구현해야 하는 상황이었음.  
-`TextEditingController`를 활용하여 입력된 이메일과 비밀번호를 검증하고,  
-`ScaffoldMessenger`를 사용해 사용자에게 오류 메시지를 제공하는 방식으로 해결함.  
+TextEditingController를 활용하여 입력된 이메일과 비밀번호를 검증하고,  
+ScaffoldMessenger를 사용해 사용자에게 오류 메시지를 제공하는 방식으로 해결함.  
 
 ### 2️⃣ **반응형 UI 적용**  
 다양한 화면 크기에서 UI가 자연스럽게 표시되도록 조정이 필요했음.  
-`MediaQuery`를 활용하여 화면 너비를 실시간으로 감지하고,  
+MediaQuery를 활용하여 화면 너비를 실시간으로 감지하고,  
 동적으로 UI 크기를 조정하는 방식으로 해결함.  
 
-### 3️⃣ **화면 전환 후 로또 번호 생성 기능 확인**  
-로그인 성공 시 로또 번호 생성 화면으로 정상적으로 이동하는지 확인했으며,  
-랜덤한 로또 번호가 문제없이 생성되고 화면에 표시되는 것을 확인함.  
+### 3️⃣ **로또 번호 SVG 아이콘으로 표시**  
+숫자만 나열하는 방식 대신 flutter_svg 패키지를 활용하여 로또 번호를 아이콘 형태로 표시함.  
 
-### 4️⃣ **ListView.builder와 Column 사용 시 오류 해결**  
-`ListView.builder`를 `Column` 내부에서 사용할 경우,  
+### 4️⃣ **팝업 다이얼로그 추가**  
+각 로또 번호 항목을 클릭하면 상세 정보를 확인할 수 있도록 팝업 다이얼로그를 추가함.  
+
+### 5️⃣ **ListView.builder와 Column 사용 시 오류 해결**  
+ListView.builder를 Column 내부에서 사용할 경우,  
 리스트의 높이를 명확하게 지정하지 않으면 **무한한 높이를 가지려 하기 때문에** 에러가 발생함.  
-이를 해결하기 위해 `Expanded` 또는 `SizedBox`로 높이를 제한함.  
+이를 해결하기 위해 Expanded 또는 SizedBox로 높이를 제한함.  
 
-### 5️⃣ **토스트 메시지로 사용자 피드백 제공**  
+### 6️⃣ **토스트 메시지로 사용자 피드백 제공**  
 로또 번호가 15개 이상 생성되었을 때,  
 사용자에게 경고 메시지를 표시해야 하는 요구사항이 있었음.  
-`Fluttertoast`를 활용하여 일정 시간 동안 화면 하단에 메시지를 띄우는 방식으로 해결함.  
+Fluttertoast를 활용하여 일정 시간 동안 화면 하단에 메시지를 띄우는 방식으로 해결함.  
 
-### 6️⃣ **스크롤바 추가로 사용자 경험 개선**  
-`ListView.builder` 사용 시 기본적으로 스크롤바가 보이지 않기 때문에,  
-`RawScrollbar`을 추가하여 사용자 경험을 개선함.  
+### 7️⃣ **스크롤바 추가로 사용자 경험 개선**  
+ListView.builder 사용 시 기본적으로 스크롤바가 보이지 않기 때문에,  
+RawScrollbar을 추가하여 사용자 경험을 개선함.  
 
 ---
 
 ## 📚 학습한 내용  
 
-- `Expanded`와 `Flex`를 활용한 비율 기반 레이아웃 조정  
-- `RawScrollbar`을 활용한 스크롤바 추가  
-- `Fluttertoast`를 이용한 토스트 메시지 표시  
-- `MediaQuery`를 활용한 반응형 UI 적용  
-- `flutter_animate` 및 `lottie`를 활용한 애니메이션 효과 적용  
-- `Navigator`를 이용한 화면 전환 처리  
-- `ScaffoldMessenger`를 활용한 사용자 피드백 메시지 제공  
+- Expanded와 Flex를 활용한 비율 기반 레이아웃 조정  
+- RawScrollbar을 활용한 스크롤바 추가  
+- Fluttertoast를 이용한 토스트 메시지 표시  
+- MediaQuery를 활용한 반응형 UI 적용  
+- flutter_animate 및 lottie를 활용한 애니메이션 효과 적용  
+- Navigator를 이용한 화면 전환 처리  
+- ScaffoldMessenger를 활용한 사용자 피드백 메시지 제공  
+- flutter_svg를 활용한 SVG 아이콘 적용  
 
 ---
 
@@ -84,6 +89,9 @@ Firebase 없이도 간단한 로그인 기능을 구현할 수 있었으며,
 반응형 UI 적용을 통해 다양한 기기에서 일관된 디자인을 유지하는 방법을 배울 수 있었음.  
 또한, 애니메이션 효과를 추가하면서 앱의 사용자 경험이 더욱 향상됨을 느낌.  
 
+이번 업데이트에서는 **로또 번호를 SVG 아이콘으로 표시**하여 디자인을 개선하였고,  
+각 항목을 클릭하면 팝업 다이얼로그가 뜨도록 하여 사용자 경험을 향상시켰음.  
+
 다음 단계에서는 **Firebase 연동을 추가하여 실제 사용자 데이터를 활용하는 로그인 기능을 개선**할 계획.  
-또한, `SharedPreferences`를 활용하여 사용자의 마지막 로그인 정보를 저장하고,  
+또한, SharedPreferences를 활용하여 사용자의 마지막 로그인 정보를 저장하고,  
 앱 재실행 시 자동 로그인 기능을 구현할 예정임.  
